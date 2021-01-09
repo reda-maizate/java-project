@@ -1,3 +1,4 @@
+package entites;
 
 public class CaracteristiquesInt {
 	private int numChambre;

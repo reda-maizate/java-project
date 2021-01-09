@@ -1,3 +1,4 @@
+package entites;
 
 public class CaracteristiquesExt {
 	private int surfaceExt;

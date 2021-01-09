@@ -1,3 +1,4 @@
+package entites;
 
 public class Entreprise {
 	private int entrepriseId;

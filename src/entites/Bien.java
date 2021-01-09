@@ -1,3 +1,5 @@
+package entites;
+
 public class Bien {
 	private int bienId;
 	private int mandatId;

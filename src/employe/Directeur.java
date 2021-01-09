@@ -1,5 +1,4 @@
-
-
+package employe;
 
 public class Directeur {
 	private int directeurId;
