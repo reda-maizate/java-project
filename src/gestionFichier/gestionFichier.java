@@ -4,10 +4,14 @@ import java.io.IOException;
 
 
 public class gestionFichier {
-	public String nomFichier = "identifiants.txt";
+	public String FichierConnexion = "identifiants.txt";
+	public String FichierDirecteur = "directeurs.txt";
+	public String FichierAgent = "agents.txt";
 	
-	public void creerFichier() throws IOException {
-	    File fichier = new File(nomFichier);
+	public gestionFichier() {}
+	
+	public void creerFichier(String NomFichier) throws IOException {
+	    File fichier = new File(FichierConnexion);
 		if (fichier.createNewFile()) {
 			System.out.println("Fichier créé : " + fichier.getName());
 		} else {

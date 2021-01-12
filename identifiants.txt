@@ -1,1 +1,2 @@
-reda,mdp1
+reda.maizate@gmail.com,mdp1
+john.doe@gmail.com,benjamin

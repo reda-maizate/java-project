@@ -1,8 +1,14 @@
 package utilisateurs;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Agent extends Utilisateur {
 	private int agentId;
 	private int deptAgent;
+	
+	public Agent() {}
 	
 	public Agent(String prenom, String nom, String email, String numTel, String agence, int agentId, int deptAgent) {
 		super(prenom, nom, email, numTel, agence);
@@ -22,5 +28,26 @@ public class Agent extends Utilisateur {
 		this.deptAgent = deptAgent;
 	}
 	
+	public boolean comparerAgents(String identifiant) throws IOException {
+		String identifiantsB = identifiant;
+		//System.out.println("test1");
+		FileReader lecteurFichier = new FileReader("agents.txt");
+		BufferedReader lecteur = new BufferedReader(lecteurFichier);
+
+		try {
+			String ligne;
+			while ((ligne = lecteur.readLine()) != null) {
+				String[] mots = ligne.split(",");
+				String identifiantsA = mots[6];
+				if (identifiantsA.equals(identifiantsB)) {
+					//System.out.println("idA: "+identifiantsA+ " / idB: "+identifiantsB);
+					return true;
+				}
+			} 
+		} finally {
+			lecteur.close();	
+		}
+		return false;
+	}
 	
 }

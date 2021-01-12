@@ -1,18 +1,17 @@
 import java.util.Scanner;
-import java.lang.System;
 
-public class MenuPrincipal {
+public class MenuAgent {
 	
-	public MenuPrincipal() {
-		
+	public MenuAgent(String prenom, String nom) {
 		Scanner scan = new Scanner(System.in);
 		try {
 		while (true) {
-			System.out.println("## Bienvenue !");
+			System.out.println("Bienvenue "+ prenom + " " + nom +" !");
 			System.out.println("");
 			System.out.println("Choissisez une option:");
-			System.out.println("1. Se connecter");
-			System.out.println("2. Quitter");
+			System.out.println("1. Voir la liste des mandats");
+			System.out.println("2. Modifier le statut d'un mandat");
+			System.out.println("3. Quitter");
 			System.out.println("");
 			System.out.println("Entrez le nombre de votre option : ");
 			
@@ -20,11 +19,13 @@ public class MenuPrincipal {
 			
 			switch (choix) {
 				case 1: 
-					new MenuConnexion();
+					//new afficherListeMandat(int id);
 					break;
-				case 2: 
-					System.out.println("Au revoir !");
-					System.exit(0);
+				case 2:
+					//new modifierStatutMandat(int id);
+					break;
+				case 3: 
+					new MenuConnexion();
 				default:
 					System.out.println("");
 					System.out.println("Vous avez choisi une option inexistante ! Réessayez !");
