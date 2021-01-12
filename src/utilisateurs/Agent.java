@@ -30,7 +30,6 @@ public class Agent extends Utilisateur {
 	
 	public boolean comparerAgents(String identifiant) throws IOException {
 		String identifiantsB = identifiant;
-		//System.out.println("test1");
 		FileReader lecteurFichier = new FileReader("agents.txt");
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 
@@ -40,7 +39,6 @@ public class Agent extends Utilisateur {
 				String[] mots = ligne.split(",");
 				String identifiantsA = mots[6];
 				if (identifiantsA.equals(identifiantsB)) {
-					//System.out.println("idA: "+identifiantsA+ " / idB: "+identifiantsB);
 					return true;
 				}
 			} 

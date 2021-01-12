@@ -14,8 +14,6 @@ public class gestionFichier {
 	    File fichier = new File(FichierConnexion);
 		if (fichier.createNewFile()) {
 			System.out.println("Fichier créé : " + fichier.getName());
-		} else {
-			/*System.out.println("Fichier déjà existant");*/
-		}
+		} else {}
 	}
 }

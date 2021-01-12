@@ -49,27 +49,20 @@ public class MenuConnexion {
 						break;
 					}
 				} else {
-					// TODO:
-					// Chercher dans le fichier avec toutes les infos sur user, récupérer leur nom, prénom et rôle.
-					// Puis lancer le menu correspondant au rôle de l'utilisateur
 					Directeur dir = new Directeur();
 					Agent ag = new Agent();
 										
-					//System.out.println("EXISTE : " + existe);
-
 					boolean isAgent = ag.comparerAgents(mail);
 
 					if (isAgent) {
 						//new MenuAgent();
 					}
 					
-					//System.out.println("EXISTE5 : " + existe);
 					boolean isDirecteur = dir.comparerDirecteurs(mail);
 
 					if (isDirecteur) {
 						List<Object> infos = dir.recupererInfos(mail);
-						int directeurId = (int) infos.get(0);
-						System.out.println("directeurId: "+directeurId);
+						int directeurId = (Integer) infos.get(0);
 						String prenom = (String) infos.get(1);
 						String nom = (String) infos.get(2);
 						String numTel = (String) infos.get(3);
@@ -80,7 +73,7 @@ public class MenuConnexion {
 				}
 			}
 		} catch(Exception e) {
-			System.out.println("Problème lors de la vérification de l'utilisateur dans le fichier txt");
+			System.out.println("Problème lors de la vérification de l'utilisateur dans le fichier txt / " + e);
 		} finally {
 			scan.close();
 		}

@@ -1,7 +1,6 @@
 package utilisateurs;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,11 +22,8 @@ public class Directeur extends Utilisateur {
 	
 	public boolean comparerDirecteurs(String identifiant) throws IOException {
 		String identifiantsB = identifiant;
-		System.out.println("test1");
 		FileReader lecteurFichier = new FileReader("directeurs.txt");
-		System.out.println("test2");
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
-		System.out.println("test3");
 		
 		try {
 			String ligne;
@@ -35,7 +31,6 @@ public class Directeur extends Utilisateur {
 				String[] mots = ligne.split(",");
 				String identifiantsA = mots[5];
 				if (identifiantsA.equals(identifiantsB)) {
-					System.out.println("idA: "+identifiantsA+ " / idB: "+identifiantsB);
 					return true;
 				}
 			} 
@@ -49,9 +44,7 @@ public class Directeur extends Utilisateur {
 		List<Object> infos = new ArrayList<Object>();
 		FileReader lecteurFichier = new FileReader("directeurs.txt");
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
-		
-		System.out.println("test1");
-		
+				
 		try {
 			String ligne;
 			while ((ligne = lecteur.readLine()) != null) {
