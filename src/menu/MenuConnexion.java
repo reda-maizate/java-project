@@ -1,4 +1,4 @@
-import java.util.List;
+package menu;
 import java.util.Scanner;
 
 import utilisateurs.Agent;
@@ -6,9 +6,13 @@ import utilisateurs.Directeur;
 import utilisateurs.Utilisateur;
 import gestionFichier.gestionFichier;
 
-public class MenuConnexion {
+public class MenuConnexion extends Menu {
 	
 	public MenuConnexion() {
+		super();
+	}
+	
+	public boolean show() {
 		Scanner scan = new Scanner(System.in);
 		gestionFichier fichier = new gestionFichier();
 		
@@ -37,15 +41,13 @@ public class MenuConnexion {
 					
 					switch (choix) {
 					case 1: 
-						new MenuConnexion();
+						MenuConnexion menuConnexion = new MenuConnexion();
+						menuConnexion.show();
 						break;
 					case 2: 
-						System.out.println("Au revoir !");
-						System.exit(0);
+						quitter();
 					default:
-						System.out.println("");
-						System.out.println("Vous avez choisi une option inexistante ! Réessayez !");
-						System.out.println("");
+						optionInexistante();
 						break;
 					}
 				} else {
@@ -55,20 +57,40 @@ public class MenuConnexion {
 					boolean isAgent = ag.comparerAgents(mail);
 
 					if (isAgent) {
-						//new MenuAgent();
+						Agent agA;
+						agA = ag.recupererInfos(mail);
+						int agentId = agA.getAgentId();
+						int deptAgent = agA.getDeptAgent();
+						String prenom = agA.getPrenom();
+						String nom = agA.getNom();
+						String numTel = agA.getNumTel();
+						String agence = agA.getAgence();
+						String email = agA.getEmail();
+						
+						//System.out.println("2: ["+agA.getAgentId()+","+agA.getDeptAgent()+","+agA.getPrenom()+","+agA.getNom()+","+agA.getNumTel()+","+agA.getAgence()+","+agA.getEmail()+"]");
+						
+						MenuAgent menuAgent = new MenuAgent();
+						menuAgent.show(agentId, deptAgent, prenom, nom, numTel, agence, email);
+						return true;
 					}
 					
 					boolean isDirecteur = dir.comparerDirecteurs(mail);
 
 					if (isDirecteur) {
-						List<Object> infos = dir.recupererInfos(mail);
-						int directeurId = (Integer) infos.get(0);
-						String prenom = (String) infos.get(1);
-						String nom = (String) infos.get(2);
-						String numTel = (String) infos.get(3);
-						String agence = (String) infos.get(4);
-						String email = (String) infos.get(5);
-						new MenuDirecteur(directeurId, prenom, nom, numTel, agence, email);
+						Directeur dirA;
+						dirA = dir.recupererInfos(mail);
+						int directeurId = dirA.getDirecteurId();
+						String prenom = dirA.getPrenom();
+						String nom = dirA.getNom();
+						String numTel = dirA.getNumTel();
+						String agence = dirA.getAgence();
+						String email = dirA.getEmail();
+						
+						//System.out.println("2: ["+directeurId+","+prenom+","+nom+","+numTel+","+agence+","+email+"]");
+						
+						MenuDirecteur menuDirecteur = new MenuDirecteur();
+						menuDirecteur.show(directeurId, prenom, nom, numTel, agence, email);
+						return true;
 					}
 				}
 			}
@@ -77,6 +99,7 @@ public class MenuConnexion {
 		} finally {
 			scan.close();
 		}
+		return false;
 	}
 }
 	

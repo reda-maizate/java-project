@@ -1,12 +1,19 @@
+package menu;
 import java.util.Scanner;
 
-public class MenuAgent {
+public class MenuAgent extends Menu {
 	
-	public MenuAgent(String prenom, String nom) {
+	// Créer une méthode public int MenuAgent.show()
+	
+	public MenuAgent() {
+		super();
+	}
+	
+	public int show(int agentId, int deptAgent, String prenom, String nom, String numTel, String agence, String email) {
 		Scanner scan = new Scanner(System.in);
 		try {
 		while (true) {
-			System.out.println("Bienvenue "+ prenom + " " + nom +" !");
+			System.out.println("Bienvenue "+ prenom + " " + nom +"!");
 			System.out.println("");
 			System.out.println("Choissisez une option:");
 			System.out.println("1. Voir la liste des mandats");
@@ -25,11 +32,10 @@ public class MenuAgent {
 					//new modifierStatutMandat(int id);
 					break;
 				case 3: 
-					new MenuConnexion();
+					MenuPrincipal menuPrincipal = new MenuPrincipal();
+					menuPrincipal.show();
 				default:
-					System.out.println("");
-					System.out.println("Vous avez choisi une option inexistante ! Réessayez !");
-					System.out.println("");
+					optionInexistante();
 					break;
 				}
 			}

@@ -1,1 +1,1 @@
-0,john,doe,0148252525,Neuilly-Plaisance,john.doe@gmail.com
+0,John,Doe,0148252525,Neuilly-Plaisance,john.doe@gmail.com

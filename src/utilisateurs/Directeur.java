@@ -40,8 +40,26 @@ public class Directeur extends Utilisateur {
 		return false;
 	}
 	
-	public List<Object> recupererInfos(String mailB) throws IOException {
-		List<Object> infos = new ArrayList<Object>();
+	public Directeur from(String[] s) {
+		String strDirecteurId = s[0].strip();
+		String prenom = s[1].strip();
+		String nom = s[2].strip();
+		String numTel = s[3].strip();
+		String agence = s[4].strip();
+		String mail = s[5].strip();
+			
+		int directeurId = Integer.parseInt(strDirecteurId);
+		Directeur dir = new Directeur(prenom, nom, mail, numTel, agence, directeurId);
+		
+		//System.out.println("0: ["+dir.getDirecteurId()+","+dir.getPrenom()+","+dir.getNom()+","+dir.getNumTel()+","+dir.getAgence()+","+dir.getEmail()+"]");
+		
+		return dir;
+	}
+		
+	public Directeur recupererInfos(String mailB) throws IOException {
+		// TODO : Retourner un directeur 
+		Directeur dir = new Directeur();
+		Directeur dirActuel;
 		FileReader lecteurFichier = new FileReader("directeurs.txt");
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 				
@@ -51,14 +69,14 @@ public class Directeur extends Utilisateur {
 				String[] mots = ligne.split(",");
 				String mailA = mots[5];
 				if (mailA.equals(mailB)) {
-					for (String mot: mots) {
-						infos.add(mot);
-					}
+					dirActuel = dir.from(mots);
+					//System.out.println("1: ["+dirActuel.getDirecteurId()+","+dirActuel.getPrenom()+","+dirActuel.getNom()+","+dirActuel.getNumTel()+","+dirActuel.getAgence()+","+dirActuel.getEmail()+"]");
+					return dirActuel;
 				}
 			}
 		} finally {
 			lecteur.close();	
 		}
-		return infos;
+		return dir;
 	}
 }

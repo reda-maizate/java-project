@@ -23,7 +23,7 @@ public class Utilisateur {
 	}
 	
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -31,7 +31,7 @@ public class Utilisateur {
 	}
 
 	public String getPrenom() {
-		return prenom;
+		return this.prenom;
 	}
 
 	public void setPrenom(String prenom) {
@@ -39,7 +39,7 @@ public class Utilisateur {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -47,7 +47,7 @@ public class Utilisateur {
 	}
 
 	public String getNumTel() {
-		return numTel;
+		return this.numTel;
 	}
 
 	public void setNumTel(String numTel) {
@@ -55,7 +55,7 @@ public class Utilisateur {
 	}
 
 	public String getAgence() {
-		return agence;
+		return this.agence;
 	}
 
 	public void setAgence(String agence) {
