@@ -62,8 +62,8 @@ public class Utilisateur {
 		this.agence = agence;
 	}
 	
-	public boolean comparerUtilisateurConnexion(String identifiant, String motDePasse, String nomFichier) throws IOException {
-		String identifiantsB = identifiant + "," + motDePasse;
+	public boolean comparerUtilisateurConnexion(String identifiant, String nomFichier) throws IOException {
+		String identifiantsB = identifiant;
 		FileReader lecteurFichier = new FileReader(nomFichier);
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 		
@@ -71,7 +71,7 @@ public class Utilisateur {
 			String ligne;
 			while ((ligne = lecteur.readLine()) != null) {
 				String[] mots = ligne.split(",");
-				String identifiantsA = mots[0] + "," + mots[1];
+				String identifiantsA = mots[0];
 				if (identifiantsA.equals(identifiantsB)) {
 					return true;
 				}
@@ -102,12 +102,12 @@ public class Utilisateur {
 		return false;
 	}
 	
-	public void ajouterUtilisateurConnexion(String identifiant, String motDePasse, String role, String nomFichier) throws IOException {
+	public void ajouterUtilisateurConnexion(String identifiant, String nomFichier) throws IOException {
 		String sauterLigne = System.getProperty("line.separator");
-		String identifiants = identifiant + "," + motDePasse + "," + role;
+		String identifiants = identifiant;
 		FileWriter fichier = new FileWriter(nomFichier, true);
 		
-		if (!comparerUtilisateurConnexion(identifiant, motDePasse, nomFichier)) {
+		if (!comparerUtilisateurConnexion(identifiant, nomFichier)) {
 			try {
 				fichier.append(identifiants + sauterLigne);
 				System.out.println("Utilisateur enregistré dans le fichier !");
@@ -134,5 +134,41 @@ public class Utilisateur {
 		} else {
 			System.out.println("Utilisateur "+ identifiant + " déjà enregistré dans le fichier !");
 		}
+	}
+	
+	public void afficherListeMandat(int id) throws IOException {
+		String identifiantB = String.valueOf(id);
+		FileReader lecteurFichier = new FileReader("mandats.txt");
+		BufferedReader lecteur = new BufferedReader(lecteurFichier);
+		
+		try {
+			String ligne;
+			while ((ligne = lecteur.readLine()) != null) {
+				String[] mots = ligne.split(",");
+				String identifiantA = mots[3];
+				if (identifiantA.equals(identifiantB)) {
+					System.out.println(ligne);
+				}
+			} 
+		} finally {
+			lecteur.close();	
+		}
+	}
+	
+	public int prochainId(String nomFichier) throws IOException {
+		FileReader lecteurFichier = new FileReader(nomFichier);
+		BufferedReader lecteur = new BufferedReader(lecteurFichier);
+		
+		try {
+			String ligne;
+			while ((ligne = lecteur.readLine()) != null) {
+				String[] mots = ligne.split(",");
+				String identifiantA = mots[0];
+				System.out.println(identifiantA);
+				} 
+		} finally {
+			lecteur.close();	
+		}
+		return 0;
 	}
 }

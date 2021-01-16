@@ -59,18 +59,18 @@ public class MenuConnexion extends Menu {
 					if (isAgent) {
 						Agent agA;
 						agA = ag.recupererInfos(mail);
-						int agentId = agA.getAgentId();
-						int deptAgent = agA.getDeptAgent();
-						String prenom = agA.getPrenom();
-						String nom = agA.getNom();
-						String numTel = agA.getNumTel();
-						String agence = agA.getAgence();
-						String email = agA.getEmail();
+						//int agentId = agA.getAgentId();
+						//int deptAgent = agA.getDeptAgent();
+						//String prenom = agA.getPrenom();
+						//String nom = agA.getNom();
+						//String numTel = agA.getNumTel();
+						//String agence = agA.getAgence();
+						//String email = agA.getEmail();
 						
 						//System.out.println("2: ["+agA.getAgentId()+","+agA.getDeptAgent()+","+agA.getPrenom()+","+agA.getNom()+","+agA.getNumTel()+","+agA.getAgence()+","+agA.getEmail()+"]");
 						
 						MenuAgent menuAgent = new MenuAgent();
-						menuAgent.show(agentId, deptAgent, prenom, nom, numTel, agence, email);
+						menuAgent.show(agA);
 						return true;
 					}
 					
@@ -79,17 +79,10 @@ public class MenuConnexion extends Menu {
 					if (isDirecteur) {
 						Directeur dirA;
 						dirA = dir.recupererInfos(mail);
-						int directeurId = dirA.getDirecteurId();
-						String prenom = dirA.getPrenom();
-						String nom = dirA.getNom();
-						String numTel = dirA.getNumTel();
-						String agence = dirA.getAgence();
-						String email = dirA.getEmail();
-						
 						//System.out.println("2: ["+directeurId+","+prenom+","+nom+","+numTel+","+agence+","+email+"]");
 						
 						MenuDirecteur menuDirecteur = new MenuDirecteur();
-						menuDirecteur.show(directeurId, prenom, nom, numTel, agence, email);
+						menuDirecteur.show(dirA);
 						return true;
 					}
 				}

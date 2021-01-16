@@ -1,5 +1,8 @@
 package menu;
+import java.io.IOException;
 import java.util.Scanner;
+
+import utilisateurs.Directeur;
 
 public class MenuDirecteur extends Menu {
 	
@@ -7,16 +10,16 @@ public class MenuDirecteur extends Menu {
 		super();
 	}
 	
-	public int show(int directeurId, String prenom, String nom, String numTel, String agence, String email) {
+	public int show(Directeur dir) throws IOException {//int directeurId, String prenom, String nom, String numTel, String agence, String email) {
 		Scanner scan = new Scanner(System.in);
 		
 		try {
 			while (true) {
-				System.out.println("Bienvenue " + prenom + " " + nom +"!");
+				System.out.println("Bienvenue " + dir.getPrenom() + " " + dir.getNom() +"!");
 				System.out.println("");
 				System.out.println("Choissisez une option:");
 				System.out.println("1. Voir la liste des mandats");
-				System.out.println("2. Modifier le statut d'un mandat");
+				System.out.println("2. Modifier un mandat");
 				System.out.println("3. Ajouter un agent");
 				System.out.println("4. Attribuer un filtre d'attribution de département à un mandat");
 				System.out.println("5. Quitter");
@@ -25,15 +28,19 @@ public class MenuDirecteur extends Menu {
 				
 				int choix = scan.nextInt();
 				
+				System.out.println("");
+
 				switch (choix) {
 					case 1: 
-						//new afficherListeMandat(int id);
+						dir.afficherListeMandat(dir.getDirecteurId());
 						break;
 					case 2:
-						//new modifierStatutMandat(int id);
+						System.out.println("Entrez l'id du mandat que vous souhaitez modifier :");
+						int idMandat = scan.nextInt();
+						//dir.modifierMandat(idMandat);
 						break;
 					case 3: 
-						//new ajouterAgent();
+						//dir.ajouterAgent(scan);
 						break;
 					case 4:
 						//new attribuerFiltreDeptMandat();

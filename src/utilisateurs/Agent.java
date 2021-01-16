@@ -90,4 +90,23 @@ public class Agent extends Utilisateur {
 		}
 		return ag;
 	}
+	
+	public void modifierStatutMandat(int idMandat) throws IOException {
+		String identifiantB = String.valueOf(idMandat);
+		FileReader lecteurFichier = new FileReader("mandats.txt");
+		BufferedReader lecteur = new BufferedReader(lecteurFichier);
+		
+		try {
+			String ligne;
+			while ((ligne = lecteur.readLine()) != null) {
+				String[] mots = ligne.split(",");
+				String identifiantA = mots[3];
+				if (identifiantA.equals(identifiantB)) {
+					System.out.println(ligne);
+				}
+			} 
+		} finally {
+			lecteur.close();	
+		}
+	}
 }

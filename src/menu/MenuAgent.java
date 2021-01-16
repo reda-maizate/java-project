@@ -1,5 +1,8 @@
 package menu;
+import java.io.IOException;
 import java.util.Scanner;
+
+import utilisateurs.Agent;
 
 public class MenuAgent extends Menu {
 	
@@ -9,11 +12,11 @@ public class MenuAgent extends Menu {
 		super();
 	}
 	
-	public int show(int agentId, int deptAgent, String prenom, String nom, String numTel, String agence, String email) {
+	public int show(Agent ag) throws IOException {
 		Scanner scan = new Scanner(System.in);
 		try {
 		while (true) {
-			System.out.println("Bienvenue "+ prenom + " " + nom +"!");
+			System.out.println("Bienvenue "+ ag.getPrenom() + " " + ag.getNom() +"!");
 			System.out.println("");
 			System.out.println("Choissisez une option:");
 			System.out.println("1. Voir la liste des mandats");
@@ -24,12 +27,16 @@ public class MenuAgent extends Menu {
 			
 			int choix = scan.nextInt();
 			
+			System.out.println("");
+
 			switch (choix) {
 				case 1: 
-					//new afficherListeMandat(int id);
+					ag.afficherListeMandat(ag.getAgentId());
 					break;
 				case 2:
-					//new modifierStatutMandat(int id);
+					System.out.println("Entrez l'id du mandat que vous souhaitez modifier :");
+					int idMandat = scan.nextInt();
+					ag.modifierStatutMandat(idMandat);
 					break;
 				case 3: 
 					MenuPrincipal menuPrincipal = new MenuPrincipal();
