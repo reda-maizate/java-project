@@ -85,57 +85,73 @@ public class Directeur extends Utilisateur {
 		//return mand;
 	//}
 	
-	public void ajouterAgent(Scanner scan) {
+	public void ajouterAgent(Agent ag, String identifiantsConnexion, Scanner scan) throws IOException {
+		String identifiantsAgent = ag.getAgentId()+","+ag.getDeptAgent()+","+ag.getPrenom()+","+ag.getNom()+","+ag.getNumTel()+","+ag.getAgence()+","+ag.getEmail();
+				
 		String nomFichierAgent = "agents.txt";
 		String nomFichierConnexion = "identifiants.txt";
-		
-		prochainId(nomFichierAgent);
-		
-		System.out.println("Entrez le code postal departemental de l'agent que vous souhaitez ajouter :");
-		String strDeptAgent = scan.nextLine();
-		System.out.println("Entrez le prénom de l'agent que vous souhaitez ajouter :");
-		String prenom = scan.nextLine();
-		System.out.println("Entrez le nom de l'agent que vous souhaitez ajouter :");
-		String nom = scan.nextLine();
-		System.out.println("Entrez le numéro de téléphone de l'agent que vous souhaitez ajouter :");
-		String numTel = scan.nextLine();
-		System.out.println("Entrez la ville de l'agence où sera l'agent que vous souhaitez ajouter :");
-		String agence = scan.nextLine();
-		System.out.println("Entrez l'adresse mail de l'agent que vous souhaitez ajouter :");
-		String email = scan.nextLine();
-
 		String sauterLigne = System.getProperty("line.separator");
-		String identifiants = email + "," + motDePasse + "," + role;
 		FileWriter fichierAgent = new FileWriter(nomFichierAgent, true);
 		
-		// Créer une classe comparerAgent dans Utilisateur
-		if (!comparerUtilisateur(identifiant, motDePasse, nomFichierAgent)) {
+		if (!comparerUtilisateur(ag.getEmail(), nomFichierAgent)) {
 			try {
-				fichier.append(identifiants + sauterLigne);
-				System.out.println("Utilisateur enregistré dans le fichier !");
+				fichierAgent.append(sauterLigne + identifiantsAgent);
+				System.out.println("LOG: Utilisateur enregistré dans le fichier Agent!");
 			} finally {
-				fichier.close();
+				fichierAgent.close();
 			} 
 		} else {
-			System.out.println("Utilisateur "+ identifiant + " déjà enregistré dans le fichier !");
+			System.out.println("Utilisateur "+ identifiantsAgent + " déjà enregistré dans le fichier !");
 		}
 		
+		FileWriter fichierConnexion = new FileWriter(nomFichierConnexion, true);
+		String motDePasse = identifiantsConnexion.split(",")[1];
+
+		if (!comparerUtilisateurConnexion(ag.getEmail(), motDePasse, nomFichierConnexion)) {
+			try {
+				fichierConnexion.append(sauterLigne + identifiantsConnexion);
+				System.out.println("LOG: Utilisateur enregistré dans le fichier Connexion!");
+			} finally {
+				fichierConnexion.close();
+			} 
+		} else {
+			System.out.println("Utilisateur "+ identifiantsConnexion + " déjà enregistré dans le fichier !");
+		}
+	}
+	
+	public Agent recupererInfosNouveauAgent(Scanner scan, String nomFichierAgent) throws IOException {
+		int id = prochainId(nomFichierAgent);
+		
+		System.out.println("Entrez le code postal departemental de l'agent que vous souhaitez ajouter :");
+		int deptAgent = scan.nextInt();
+		
+		scan.nextLine();
+		
+		System.out.println("Entrez le prénom de l'agent que vous souhaitez ajouter :");
+		String prenom = scan.nextLine();
+		
+		System.out.println("Entrez le nom de l'agent que vous souhaitez ajouter :");
+		String nom = scan.nextLine();
+		
+		System.out.println("Entrez le numéro de téléphone de l'agent que vous souhaitez ajouter :");
+		String numTel = scan.nextLine();
+		
+		System.out.println("Entrez la ville de l'agence où sera l'agent que vous souhaitez ajouter :");
+		String agence = scan.nextLine();
+		
+		System.out.println("Entrez l'adresse mail de l'agent que vous souhaitez ajouter :");
+		String email = scan.nextLine();
+		
+		Agent ag = new Agent(prenom, nom, email, numTel, agence, id, deptAgent);
+		
+		return ag;
+	}
+	
+	public String recupererInfosNouveauAgentConnexion(Agent ag, Scanner scan, String nomFichierConnexion) throws IOException {
 		System.out.println("Entrez le mot de passe de l'agent que vous souhaitez ajouter :");
 		String motDePasse = scan.nextLine();
 		
-		String sauterLigne = System.getProperty("line.separator");
-		String identifiant = email;
-		FileWriter fichierConnexion = new FileWriter(nomFichierConnexion, true);
-		
-		if (!comparerUtilisateurConnexion(identifiant, nomFichierConnexion)) {
-			try {
-				fichier.append(identifiants + sauterLigne);
-				System.out.println("Utilisateur enregistré dans le fichier !");
-			} finally {
-				fichier.close();
-			} 
-		} else {
-			System.out.println("Utilisateur "+ identifiant + " déjà enregistré dans le fichier !");
-		}
+		String identifiantsConnexion = ag.getEmail()+","+motDePasse;
+		return identifiantsConnexion;
 	}
 }

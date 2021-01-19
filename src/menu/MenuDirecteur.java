@@ -2,6 +2,7 @@ package menu;
 import java.io.IOException;
 import java.util.Scanner;
 
+import utilisateurs.Agent;
 import utilisateurs.Directeur;
 
 public class MenuDirecteur extends Menu {
@@ -10,7 +11,7 @@ public class MenuDirecteur extends Menu {
 		super();
 	}
 	
-	public int show(Directeur dir) throws IOException {//int directeurId, String prenom, String nom, String numTel, String agence, String email) {
+	public int show(Directeur dir) throws IOException {
 		Scanner scan = new Scanner(System.in);
 		
 		try {
@@ -39,8 +40,10 @@ public class MenuDirecteur extends Menu {
 						int idMandat = scan.nextInt();
 						//dir.modifierMandat(idMandat);
 						break;
-					case 3: 
-						//dir.ajouterAgent(scan);
+					case 3:
+						Agent ag = dir.recupererInfosNouveauAgent(scan, "agents.txt");
+						String identifiantsConnexion = dir.recupererInfosNouveauAgentConnexion(ag, scan, "identifiants.txt");
+						dir.ajouterAgent(ag, identifiantsConnexion, scan);
 						break;
 					case 4:
 						//new attribuerFiltreDeptMandat();

@@ -27,7 +27,7 @@ public class MenuConnexion extends Menu {
 				System.out.println("");
 				
 				Utilisateur util = new Utilisateur();
-				boolean existe = util.comparerUtilisateur(mail, mdp, fichier.FichierConnexion);
+				boolean existe = util.comparerUtilisateurConnexion(mail, mdp, fichier.FichierConnexion);
 				
 				
 				if (!existe) {

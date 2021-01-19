@@ -7,3 +7,9 @@ public class Application {
         menuPrincipal.show();
     }
 }
+
+/*
+
+TODO: Corriger les fonctions comparerUtilisateur et comparerUtilisateurConnexion
+
+*/

@@ -62,8 +62,8 @@ public class Utilisateur {
 		this.agence = agence;
 	}
 	
-	public boolean comparerUtilisateurConnexion(String identifiant, String nomFichier) throws IOException {
-		String identifiantsB = identifiant;
+	public boolean comparerUtilisateurConnexion(String identifiant, String motDePasse, String nomFichier) throws IOException {
+		String identifiantsB = identifiant + "," + motDePasse;
 		FileReader lecteurFichier = new FileReader(nomFichier);
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 		
@@ -71,7 +71,7 @@ public class Utilisateur {
 			String ligne;
 			while ((ligne = lecteur.readLine()) != null) {
 				String[] mots = ligne.split(",");
-				String identifiantsA = mots[0];
+				String identifiantsA = mots[0]+","+mots[1];
 				if (identifiantsA.equals(identifiantsB)) {
 					return true;
 				}
@@ -82,8 +82,8 @@ public class Utilisateur {
 		return false;
 	}
 	
-	public boolean comparerUtilisateur(String identifiant, String motDePasse, String nomFichier) throws IOException {
-		String identifiantsB = identifiant + "," + motDePasse;
+	public boolean comparerUtilisateur(String identifiant, String nomFichier) throws IOException {
+		String identifiantsB = identifiant;
 		FileReader lecteurFichier = new FileReader(nomFichier);
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 		
@@ -102,12 +102,12 @@ public class Utilisateur {
 		return false;
 	}
 	
-	public void ajouterUtilisateurConnexion(String identifiant, String nomFichier) throws IOException {
+	public void ajouterUtilisateurConnexion(String identifiant, String motDePasse, String nomFichier) throws IOException {
 		String sauterLigne = System.getProperty("line.separator");
-		String identifiants = identifiant;
+		String identifiants = identifiant + "," + motDePasse;
 		FileWriter fichier = new FileWriter(nomFichier, true);
 		
-		if (!comparerUtilisateurConnexion(identifiant, nomFichier)) {
+		if (!comparerUtilisateurConnexion(identifiant, motDePasse, nomFichier)) {
 			try {
 				fichier.append(identifiants + sauterLigne);
 				System.out.println("Utilisateur enregistré dans le fichier !");
@@ -119,12 +119,12 @@ public class Utilisateur {
 		}
 	}
 	
-	public void ajouterUtilisateur(String identifiant, String motDePasse, String role, String nomFichier) throws IOException {
+	public void ajouterUtilisateur(String identifiant, String motDePasse, String nomFichier) throws IOException {
 		String sauterLigne = System.getProperty("line.separator");
-		String identifiants = identifiant + "," + motDePasse + "," + role;
+		String identifiants = identifiant + "," + motDePasse;
 		FileWriter fichier = new FileWriter(nomFichier, true);
 		
-		if (!comparerUtilisateur(identifiant, motDePasse, nomFichier)) {
+		if (!comparerUtilisateur(identifiant, nomFichier)) {
 			try {
 				fichier.append(identifiants + sauterLigne);
 				System.out.println("Utilisateur enregistré dans le fichier !");
@@ -163,8 +163,9 @@ public class Utilisateur {
 			String ligne;
 			while ((ligne = lecteur.readLine()) != null) {
 				String[] mots = ligne.split(",");
-				String identifiantA = mots[0];
-				System.out.println(identifiantA);
+				int identifiantA = Integer.parseInt(mots[0]);
+				identifiantA += 1;
+				return identifiantA;
 				} 
 		} finally {
 			lecteur.close();	
