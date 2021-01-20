@@ -86,36 +86,27 @@ public class Directeur extends Utilisateur {
 	//}
 	
 	public void ajouterAgent(Agent ag, String identifiantsConnexion, Scanner scan) throws IOException {
-		String identifiantsAgent = ag.getAgentId()+","+ag.getDeptAgent()+","+ag.getPrenom()+","+ag.getNom()+","+ag.getNumTel()+","+ag.getAgence()+","+ag.getEmail();
-				
+		String sauterLigne = System.getProperty("line.separator");
+		String identifiantsAgent = ag.getAgentId() + "," + ag.getDeptAgent() + "," + ag.getPrenom() + "," + ag.getNom() + "," + ag.getNumTel() + "," + ag.getAgence() + "," + ag.getEmail();
+		
 		String nomFichierAgent = "agents.txt";
 		String nomFichierConnexion = "identifiants.txt";
-		String sauterLigne = System.getProperty("line.separator");
+				
 		FileWriter fichierAgent = new FileWriter(nomFichierAgent, true);
+		FileWriter fichierConnexion = new FileWriter(nomFichierConnexion, true);
 		
-		if (!comparerUtilisateur(ag.getEmail(), nomFichierAgent)) {
+		if (!estDejaEnregistreAgent(ag.getEmail()) && !estDejaEnregistreConnexion(ag.getEmail())) {
 			try {
 				fichierAgent.append(sauterLigne + identifiantsAgent);
 				System.out.println("LOG: Utilisateur enregistré dans le fichier Agent!");
-			} finally {
-				fichierAgent.close();
-			} 
-		} else {
-			System.out.println("Utilisateur "+ identifiantsAgent + " déjà enregistré dans le fichier !");
-		}
-		
-		FileWriter fichierConnexion = new FileWriter(nomFichierConnexion, true);
-		String motDePasse = identifiantsConnexion.split(",")[1];
-
-		if (!comparerUtilisateurConnexion(ag.getEmail(), motDePasse, nomFichierConnexion)) {
-			try {
 				fichierConnexion.append(sauterLigne + identifiantsConnexion);
 				System.out.println("LOG: Utilisateur enregistré dans le fichier Connexion!");
 			} finally {
+				fichierAgent.close();
 				fichierConnexion.close();
 			} 
 		} else {
-			System.out.println("Utilisateur "+ identifiantsConnexion + " déjà enregistré dans le fichier !");
+			System.out.println("LOG: Utilisateur "+ ag.getEmail() + " déjà enregistré dans le fichier!");
 		}
 	}
 	

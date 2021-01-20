@@ -9,7 +9,5 @@ public class Application {
 }
 
 /*
-
 TODO: Corriger les fonctions comparerUtilisateur et comparerUtilisateurConnexion
-
 */

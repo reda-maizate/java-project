@@ -15,8 +15,8 @@ public class MenuDirecteur extends Menu {
 		Scanner scan = new Scanner(System.in);
 		
 		try {
+			System.out.println("Bienvenue " + dir.getPrenom() + " " + dir.getNom() +"!");
 			while (true) {
-				System.out.println("Bienvenue " + dir.getPrenom() + " " + dir.getNom() +"!");
 				System.out.println("");
 				System.out.println("Choissisez une option:");
 				System.out.println("1. Voir la liste des mandats");

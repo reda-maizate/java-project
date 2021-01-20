@@ -14,20 +14,20 @@ public class MenuConnexion extends Menu {
 	
 	public boolean show() {
 		Scanner scan = new Scanner(System.in);
-		gestionFichier fichier = new gestionFichier();
+		//gestionFichier fichier = new gestionFichier();
 		
 		try {
 			while (true) {
 				System.out.println("## Se connecter");
 				System.out.println("");
 				System.out.println("Entrez votre adresse mail : ");
-				String mail = scan.nextLine();
+				String email = scan.nextLine();
 				System.out.println("Entrez votre mot de passe : ");
 				String mdp = scan.nextLine();
 				System.out.println("");
 				
 				Utilisateur util = new Utilisateur();
-				boolean existe = util.comparerUtilisateurConnexion(mail, mdp, fichier.FichierConnexion);
+				boolean existe = util.verificationConnexion(email, mdp);
 				
 				
 				if (!existe) {
@@ -54,11 +54,11 @@ public class MenuConnexion extends Menu {
 					Directeur dir = new Directeur();
 					Agent ag = new Agent();
 										
-					boolean isAgent = ag.comparerAgents(mail);
+					boolean isAgent = ag.comparerAgents(email);
 
 					if (isAgent) {
 						Agent agA;
-						agA = ag.recupererInfos(mail);
+						agA = ag.recupererInfos(email);
 						//int agentId = agA.getAgentId();
 						//int deptAgent = agA.getDeptAgent();
 						//String prenom = agA.getPrenom();
@@ -74,11 +74,11 @@ public class MenuConnexion extends Menu {
 						return true;
 					}
 					
-					boolean isDirecteur = dir.comparerDirecteurs(mail);
+					boolean isDirecteur = dir.comparerDirecteurs(email);
 
 					if (isDirecteur) {
 						Directeur dirA;
-						dirA = dir.recupererInfos(mail);
+						dirA = dir.recupererInfos(email);
 						//System.out.println("2: ["+directeurId+","+prenom+","+nom+","+numTel+","+agence+","+email+"]");
 						
 						MenuDirecteur menuDirecteur = new MenuDirecteur();

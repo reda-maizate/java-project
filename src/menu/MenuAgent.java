@@ -15,35 +15,35 @@ public class MenuAgent extends Menu {
 	public int show(Agent ag) throws IOException {
 		Scanner scan = new Scanner(System.in);
 		try {
-		while (true) {
 			System.out.println("Bienvenue "+ ag.getPrenom() + " " + ag.getNom() +"!");
-			System.out.println("");
-			System.out.println("Choissisez une option:");
-			System.out.println("1. Voir la liste des mandats");
-			System.out.println("2. Modifier le statut d'un mandat");
-			System.out.println("3. Quitter");
-			System.out.println("");
-			System.out.println("Entrez le nombre de votre option : ");
-			
-			int choix = scan.nextInt();
-			
-			System.out.println("");
-
-			switch (choix) {
-				case 1: 
-					ag.afficherListeMandat(ag.getAgentId());
-					break;
-				case 2:
-					System.out.println("Entrez l'id du mandat que vous souhaitez modifier :");
-					int idMandat = scan.nextInt();
-					ag.modifierStatutMandat(idMandat);
-					break;
-				case 3: 
-					MenuPrincipal menuPrincipal = new MenuPrincipal();
-					menuPrincipal.show();
-				default:
-					optionInexistante();
-					break;
+			while (true) {
+				System.out.println("");
+				System.out.println("Choissisez une option:");
+				System.out.println("1. Voir la liste des mandats");
+				System.out.println("2. Modifier le statut d'un mandat");
+				System.out.println("3. Quitter");
+				System.out.println("");
+				System.out.println("Entrez le nombre de votre option : ");
+				
+				int choix = scan.nextInt();
+				
+				System.out.println("");
+	
+				switch (choix) {
+					case 1: 
+						ag.afficherListeMandat(ag.getAgentId());
+						break;
+					case 2:
+						System.out.println("Entrez l'id du mandat que vous souhaitez modifier :");
+						int idMandat = scan.nextInt();
+						ag.modifierStatutMandat(idMandat);
+						break;
+					case 3: 
+						MenuPrincipal menuPrincipal = new MenuPrincipal();
+						menuPrincipal.show();
+					default:
+						optionInexistante();
+						break;
 				}
 			}
 		} finally {
