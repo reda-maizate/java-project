@@ -1,5 +1,6 @@
 package menu;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 import utilisateurs.Agent;
@@ -12,7 +13,7 @@ public class MenuAgent extends Menu {
 		super();
 	}
 	
-	public int show(Agent ag) throws IOException {
+	public int show(Agent ag) throws IOException, ParseException {
 		Scanner scan = new Scanner(System.in);
 		try {
 			System.out.println("Bienvenue "+ ag.getPrenom() + " " + ag.getNom() +"!");
@@ -36,7 +37,7 @@ public class MenuAgent extends Menu {
 					case 2:
 						System.out.println("Entrez l'id du mandat que vous souhaitez modifier :");
 						int idMandat = scan.nextInt();
-						ag.modifierStatutMandat(idMandat);
+						ag.modifierStatutMandat(idMandat, scan);
 						break;
 					case 3: 
 						MenuPrincipal menuPrincipal = new MenuPrincipal();

@@ -9,5 +9,5 @@ public class Application {
 }
 
 /*
-TODO: Corriger les fonctions comparerUtilisateur et comparerUtilisateurConnexion
+TODO: Corriger la suppression et modification de nom des fichiers dans Agent
 */
