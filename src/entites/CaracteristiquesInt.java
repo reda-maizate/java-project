@@ -5,7 +5,7 @@ public class CaracteristiquesInt {
 	private int numSalleDeBain;
 	private int numCuisine;
 	private int numSalon;
-	
+
 	public CaracteristiquesInt(int numChambre, int numSalleDeBain, int numCuisine, int numSalon) {
 		this.numChambre = numChambre;
 		this.numSalleDeBain = numSalleDeBain;
@@ -44,6 +44,5 @@ public class CaracteristiquesInt {
 	public void setNumSalon(int numSalon) {
 		this.numSalon = numSalon;
 	}
-	
-	
+
 }

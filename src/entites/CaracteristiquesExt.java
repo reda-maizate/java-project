@@ -4,7 +4,7 @@ public class CaracteristiquesExt {
 	private int surfaceExt;
 	private int asJardin;
 	private int asGarage;
-	
+
 	public CaracteristiquesExt(int surfaceExt, int asJardin, int asGarage) {
 		this.surfaceExt = surfaceExt;
 		this.asJardin = asJardin;
@@ -34,5 +34,5 @@ public class CaracteristiquesExt {
 	public void setAsJardin(int asJardin) {
 		this.asJardin = asJardin;
 	}
-	
+
 }

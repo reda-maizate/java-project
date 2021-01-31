@@ -12,8 +12,10 @@ public class Bien {
 	private CaracteristiquesExt caracteristiquesExt;
 	private Entreprise entreprise;
 	private String statut;
-	
-	public Bien(int bienId, int mandatId, String typeBien, Adresse adresseId, String descriptionBien, int prixBien, int surfaceBien, CaracteristiquesInt caracteristiquesInt, CaracteristiquesExt caracteristiquesExt, Entreprise entreprise, String statut) {
+
+	public Bien(int bienId, int mandatId, String typeBien, Adresse adresseId, String descriptionBien, int prixBien,
+			int surfaceBien, CaracteristiquesInt caracteristiquesInt, CaracteristiquesExt caracteristiquesExt,
+			Entreprise entreprise, String statut) {
 		this.bienId = bienId;
 		this.mandatId = mandatId;
 		this.typeBien = typeBien;
@@ -27,7 +29,6 @@ public class Bien {
 		this.statut = statut;
 	}
 
-	
 	public String getTypeBien() {
 		return typeBien;
 	}
@@ -96,24 +97,20 @@ public class Bien {
 		this.statut = statut;
 	}
 
-
 	public CaracteristiquesInt getCaracteristiquesInt() {
 		return caracteristiquesInt;
 	}
-
 
 	public void setCaracteristiquesInt(CaracteristiquesInt caracteristiquesInt) {
 		this.caracteristiquesInt = caracteristiquesInt;
 	}
 
-
 	public CaracteristiquesExt getCaracteristiquesExt() {
 		return caracteristiquesExt;
 	}
 
-
 	public void setCaracteristiquesExt(CaracteristiquesExt caracteristiquesExt) {
 		this.caracteristiquesExt = caracteristiquesExt;
 	}
-	
+
 }

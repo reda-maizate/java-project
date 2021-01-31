@@ -13,8 +13,9 @@ public class Mandat {
 	private Date permisConstruireFin;
 	private int numPermis;
 	private int statut;
-	
-	public Mandat(int mandatId, int bienId, int agenceId, int agentId, Date permisConstuireDebut, Date permisConstruireFin, int numPermis, int statut) {
+
+	public Mandat(int mandatId, int bienId, int agenceId, int agentId, Date permisConstuireDebut,
+			Date permisConstruireFin, int numPermis, int statut) {
 		this.mandatId = mandatId;
 		this.bienId = bienId;
 		this.agenceId = agenceId;
@@ -87,8 +88,8 @@ public class Mandat {
 	public void setStatut(int statut) {
 		this.statut = statut;
 	}
-	
-	public Mandat from (String[] s) throws ParseException {		
+
+	public Mandat from(String[] s) throws ParseException {
 		String strMandatId = s[0].strip();
 		String strBienId = s[1].strip();
 		String strAgenceId = s[2].strip();
@@ -97,22 +98,22 @@ public class Mandat {
 		String strPermisConstruireFin = s[5].strip();
 		String strNumPermis = s[6].strip();
 		String strStatut = s[7].strip();
-			
+
 		int mandatId = Integer.parseInt(strMandatId);
 		int bienId = Integer.parseInt(strBienId);
 		int agenceId = Integer.parseInt(strAgenceId);
 		int agentId = Integer.parseInt(strAgentId);
 		int numPermis = Integer.parseInt(strNumPermis);
 		int statut = Integer.parseInt(strStatut);
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date permisConstruireDebut = sdf.parse(strPermisConstruireDebut);
 		Date permisConstruireFin = sdf.parse(strPermisConstruireFin);
-		
-		Mandat man = new Mandat(mandatId, bienId, agenceId, agentId, permisConstruireDebut, permisConstruireFin, numPermis, statut);
-				
+
+		Mandat man = new Mandat(mandatId, bienId, agenceId, agentId, permisConstruireDebut, permisConstruireFin,
+				numPermis, statut);
+
 		return man;
 	}
-		
+
 }
-	

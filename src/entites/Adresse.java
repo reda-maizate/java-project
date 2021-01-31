@@ -8,8 +8,9 @@ public class Adresse {
 	private String villeAdresse;
 	private int codePostalAdresse;
 	private String paysAdresse;
-	
-	public Adresse(int adresseId, int numVoieAdresse, String typeVoieAdresse, String nomVoieAdresse, String villeAdresse, int codePostalAdresse, String paysAdresse) {
+
+	public Adresse(int adresseId, int numVoieAdresse, String typeVoieAdresse, String nomVoieAdresse,
+			String villeAdresse, int codePostalAdresse, String paysAdresse) {
 		this.adresseId = adresseId;
 		this.numVoieAdresse = numVoieAdresse;
 		this.typeVoieAdresse = typeVoieAdresse;
@@ -22,7 +23,7 @@ public class Adresse {
 	public int getNumVoieAdresse() {
 		return numVoieAdresse;
 	}
-	
+
 	public void setNumVoieAdresse(int numVoieAdresse) {
 		this.numVoieAdresse = numVoieAdresse;
 	}

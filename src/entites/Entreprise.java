@@ -4,7 +4,7 @@ public class Entreprise {
 	private int entrepriseId;
 	private int siretEntreprise;
 	private String nomEntreprise;
-	
+
 	public Entreprise(int entrepriseId, int siretEntreprise, String nomEntreprise) {
 		this.entrepriseId = entrepriseId;
 		this.siretEntreprise = siretEntreprise;
