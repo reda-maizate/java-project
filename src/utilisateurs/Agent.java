@@ -145,27 +145,15 @@ public class Agent extends Utilisateur {
 		return man;
 	}
 
-	private void modifierStatutMandatFichier(Mandat man) {
+	private void modifierStatutMandatFichier(Mandat man) throws IOException {
 		String sauterLigne = System.getProperty("line.separator");
 		int mandatIdA = man.getMandatId();
 
 		File entree = new File("mandats.txt");
 		File sortie = new File("temp.txt");
 
-		FileReader lecteurFichier = null;
-		try {
-			lecteurFichier = new FileReader(entree);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		FileWriter ecritureFichier = null;
-		try {
-			ecritureFichier = new FileWriter(sortie);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		FileReader lecteurFichier = new FileReader(entree);
+		FileWriter ecritureFichier = new FileWriter(sortie);
 
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 		BufferedWriter ecriture = new BufferedWriter(ecritureFichier);
@@ -193,54 +181,14 @@ public class Agent extends Utilisateur {
 			System.out.println(e);
 		} finally {
 			// A corriger en dessous !
-			try {
-				lecteur.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				ecriture.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			Path sourceEntree = Paths.get(entree.getAbsolutePath());
-			try {
-				Files.move(sourceEntree, sourceEntree.resolveSibling("poubelle.txt"), StandardCopyOption.REPLACE_EXISTING);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			Path sourceSortie = Paths.get(sortie.getAbsolutePath());
-			try {
-				Files.move(sourceSortie, sourceSortie.resolveSibling("mandats.txt"), StandardCopyOption.REPLACE_EXISTING);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			if (entree.delete())
-				System.out.println("Deleted!");
-			else
-				System.out.println("Not deleted bro!");
-
-			/*
-			 * boolean entreeChanged = entree.renameTo(new File("poubelle")); boolean
-			 * sortieChanged = sortie.renameTo(new File("mandats.txt")); boolean entreeDel =
-			 * entree.delete();
-			 * 
-			 * if (entreeChanged) System.out.println("Success creation poubelle"); else
-			 * System.out.println("Failure creation poubelle");
-			 * 
-			 * if (sortieChanged) System.out.println("Success modification mandats"); else
-			 * System.out.println("Failure modififcation mandatd");
-			 * 
-			 * if (entreeDel) System.out.println("success poubelle deleted"); else
-			 * System.out.println("Failure poubelle deleted");
-			 */
+			lecteur.close();
+			lecteurFichier.close();
+			
+			ecriture.close();
+			ecritureFichier.close();
+			
+			entree.delete();
+			sortie.renameTo(new File("mandatss.txt"));
 		}
 	}
 
