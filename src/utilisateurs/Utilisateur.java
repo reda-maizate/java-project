@@ -3,6 +3,7 @@ package utilisateurs;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 
 public class Utilisateur {
@@ -63,7 +64,37 @@ public class Utilisateur {
 	public void setAgence(String agence) {
 		this.agence = agence;
 	}
+	
+	public boolean lireFichierComparer(String nomFichier, String identifiantB, int elementComparateur) throws IOException {
+		FileReader lecteurFichier = new FileReader(nomFichier);
+		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 
+		try {
+			String ligne;
+			while ((ligne = lecteur.readLine()) != null) {
+				String[] mots = ligne.split(",");
+				String identifiantA;
+ 				if (elementComparateur == -1) {
+					identifiantA = ligne;
+				} else {
+					identifiantA = mots[elementComparateur];
+				}
+				if (identifiantA.equals(identifiantB)) {
+					return true;
+				}
+			}
+		} finally {
+			lecteur.close();
+		}
+		return false;
+	}
+
+	public boolean estDejaEnregistreConnexion(String email) throws IOException {
+		String identifiantB = email;
+		
+		return lireFichierComparer("identifiants.txt", identifiantB, 0);
+	}
+	/*
 	public boolean estDejaEnregistreConnexion(String email) throws IOException {
 		String identifiantB = email;
 		FileReader lecteurFichier = new FileReader("identifiants.txt");
@@ -81,10 +112,17 @@ public class Utilisateur {
 		} finally {
 			lecteur.close();
 		}
-		return false;
 	}
+		return false;*/
 
 	public boolean verificationConnexion(String identifiant, String motDePasse) throws IOException {
+		String identifiantB = identifiant + "," + motDePasse;
+		
+		return lireFichierComparer("identifiants.txt", identifiantB, -1);
+	}
+
+	/*
+	 * 	public boolean verificationConnexion(String identifiant, String motDePasse) throws IOException {
 		String identifiantsB = identifiant + "," + motDePasse;
 		FileReader lecteurFichier = new FileReader("identifiants.txt");
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
@@ -103,7 +141,15 @@ public class Utilisateur {
 		}
 		return false;
 	}
-
+	*/
+	
+	public boolean estDejaEnregistreAgent(String email) throws IOException {
+		String identifiantB = email;
+		
+		return lireFichierComparer("agents.txt", identifiantB, 6);
+	}
+	
+	/*
 	public boolean estDejaEnregistreAgent(String email) throws IOException {
 		String identifiantsB = email;
 		FileReader lecteurFichier = new FileReader("agents.txt");
@@ -122,31 +168,7 @@ public class Utilisateur {
 			lecteur.close();
 		}
 		return false;
-	}
-
-	/*
-	 * public void ajouterUtilisateurConnexion(String identifiant, String
-	 * motDePasse, String nomFichier) throws IOException { String sauterLigne =
-	 * System.getProperty("line.separator"); String identifiants = identifiant + ","
-	 * + motDePasse; FileWriter fichier = new FileWriter(nomFichier, true);
-	 * 
-	 * if (!comparerUtilisateurConnexion(identifiant, motDePasse, nomFichier)) { try
-	 * { fichier.append(identifiants + sauterLigne);
-	 * System.out.println("Utilisateur enregistré dans le fichier !"); } finally {
-	 * fichier.close(); } } else { System.out.println("Utilisateur "+ identifiant +
-	 * " déjà enregistré dans le fichier !"); } }
-	 * 
-	 * public void ajouterUtilisateur(String identifiant, String motDePasse, String
-	 * nomFichier) throws IOException { String sauterLigne =
-	 * System.getProperty("line.separator"); String identifiants = identifiant + ","
-	 * + motDePasse; FileWriter fichier = new FileWriter(nomFichier, true);
-	 * 
-	 * if (!comparerUtilisateur(identifiant, nomFichier)) { try {
-	 * fichier.append(identifiants + sauterLigne);
-	 * System.out.println("Utilisateur enregistré dans le fichier !"); } finally {
-	 * fichier.close(); } } else { System.out.println("Utilisateur "+ identifiant +
-	 * " déjà enregistré dans le fichier !"); } }
-	 */
+	}*/
 
 	public void afficherListeMandat(int id) throws IOException {
 		String identifiantB = String.valueOf(id);

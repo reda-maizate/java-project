@@ -20,7 +20,7 @@ public class MenuPrincipal extends Menu {
 				System.out.println("1. Se connecter");
 				System.out.println("2. Quitter");
 				System.out.println("");
-				System.out.println("Entrez le nombre de votre option : ");
+				System.out.println("Entrez le nombre correspondant à votre option : ");
 
 				int choix = scan.nextInt();
 

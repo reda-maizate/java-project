@@ -25,7 +25,7 @@ public class MenuAgent extends Menu {
 				System.out.println("2. Modifier le statut d'un mandat");
 				System.out.println("3. Quitter");
 				System.out.println("");
-				System.out.println("Entrez le nombre de votre option : ");
+				System.out.println("Entrez le nombre correspondant à votre option : ");
 
 				int choix = scan.nextInt();
 

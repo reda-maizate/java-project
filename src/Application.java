@@ -8,8 +8,9 @@ public class Application {
 }
 
 /*
- * TODO: - Corriger la suppression et modification de nom des fichiers dans
- * Agent - Ajouter l'option 2 et 4 dans le MenuDirecteur - Créer une fonction de
- * parcours de fichier - Nettoyer le code et ajouter des commentaires à toutes
- * les fonctions
+ * TODO: 
+ * - Corriger la suppression et modification de nom des fichiers dans Agent 
+ * - Ajouter l'option 4 dans le MenuDirecteur 
+ * - Créer une fonction de parcours de fichier 
+ * - Nettoyer le code et ajouter des commentaires à toutes les fonctions
  */

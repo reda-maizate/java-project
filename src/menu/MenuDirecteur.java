@@ -1,6 +1,7 @@
 package menu;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 import utilisateurs.Agent;
@@ -12,7 +13,7 @@ public class MenuDirecteur extends Menu {
 		super();
 	}
 
-	public int show(Directeur dir) throws IOException {
+	public int show(Directeur dir) throws IOException, ParseException {
 		Scanner scan = new Scanner(System.in);
 
 		try {
@@ -39,12 +40,11 @@ public class MenuDirecteur extends Menu {
 				case 2:
 					System.out.println("Entrez l'id du mandat que vous souhaitez modifier :");
 					int idMandat = scan.nextInt();
-					// dir.modifierMandat(idMandat);
+					dir.modifierMandat(idMandat, scan);
 					break;
 				case 3:
 					Agent ag = dir.recupererInfosNouveauAgent(scan, "agents.txt");
-					String identifiantsConnexion = dir.recupererInfosNouveauAgentConnexion(ag, scan,
-							"identifiants.txt");
+					String identifiantsConnexion = dir.recupererInfosNouveauAgentConnexion(ag, scan, "identifiants.txt");
 					dir.ajouterAgent(ag, identifiantsConnexion, scan);
 					break;
 				case 4:

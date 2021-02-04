@@ -115,5 +115,25 @@ public class Mandat {
 
 		return man;
 	}
+	
+	public String descriptionStatutMandat(int statut) {
+		String sortie;
 
+		switch (statut) {
+		case 0:
+			sortie = "En attente de construction";
+			break;
+		case 1:
+			sortie = "En construction";
+			break;
+		case 2:
+			sortie = "Construction terminée";
+			break;
+		default:
+			sortie = "Statut incorrecte";
+			break;
+		}
+
+		return sortie;
+	}
 }

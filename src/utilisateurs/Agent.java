@@ -43,6 +43,12 @@ public class Agent extends Utilisateur {
 	}
 
 	public boolean comparerAgents(String identifiant) throws IOException {
+		String identifiantB = identifiant;
+		
+		return lireFichierComparer("agents.txt", identifiantB, 6);
+	}
+	
+	/*	public boolean comparerAgents(String identifiant) throws IOException {
 		String identifiantsB = identifiant;
 		FileReader lecteurFichier = new FileReader("agents.txt");
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
@@ -60,7 +66,7 @@ public class Agent extends Utilisateur {
 			lecteur.close();
 		}
 		return false;
-	}
+	}*/
 
 	public Agent from(String[] s) {
 		String strAgentId = s[0].strip();
@@ -80,7 +86,6 @@ public class Agent extends Utilisateur {
 	}
 
 	public Agent recupererInfos(String mailB) throws IOException {
-		// TODO : Retourner un agent
 		Agent ag = new Agent();
 		Agent agActuel;
 		FileReader lecteurFichier = new FileReader("agents.txt");
@@ -93,8 +98,6 @@ public class Agent extends Utilisateur {
 				String mailA = mots[6];
 				if (mailA.equals(mailB)) {
 					agActuel = ag.from(mots);
-					// System.out.println("1:
-					// ["+agActuel.getAgentId()+","+agActuel.getDeptAgent()+","+agActuel.getPrenom()+","+agActuel.getNom()+","+agActuel.getNumTel()+","+agActuel.getAgence()+","+agActuel.getEmail()+"]");
 					return agActuel;
 				}
 			}
@@ -119,7 +122,7 @@ public class Agent extends Utilisateur {
 				if (identifiantA.equals(identifiantB)) {
 					manActuel = man.from(mots);
 					System.out.println("Le statut du mandat que vous avez selectionné est " + manActuel.getStatut()
-							+ " (" + descriptionStatutMandat(manActuel.getStatut()) + ")");
+							+ " (" + man.descriptionStatutMandat(manActuel.getStatut()) + ")");
 					System.out.println();
 					System.out.println("-- HELPER --");
 					System.out.println("0: En attente de construction");
@@ -131,7 +134,7 @@ public class Agent extends Utilisateur {
 
 					int nouvStatut = scan.nextInt();
 					System.out.println("Le statut de ce mandat est désormais : " + nouvStatut + " ("
-							+ descriptionStatutMandat(nouvStatut) + ")");
+							+ man.descriptionStatutMandat(nouvStatut) + ")");
 					manActuel.setStatut(nouvStatut);
 
 					modifierStatutMandatFichier(manActuel);
@@ -177,40 +180,22 @@ public class Agent extends Utilisateur {
 					ecriture.flush();
 				}
 			}
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			// A corriger en dessous !
+			
 			lecteur.close();
 			lecteurFichier.close();
-			
+
 			ecriture.close();
 			ecritureFichier.close();
 			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("En cours de construction !");
 			entree.delete();
-			sortie.renameTo(new File("mandatss.txt"));
+			sortie.renameTo(new File("mandats.txt"));
 		}
 	}
 
-	public String descriptionStatutMandat(int statut) {
-
-		String sortie;
-
-		switch (statut) {
-		case 0:
-			sortie = "En attente de construction";
-			break;
-		case 1:
-			sortie = "En construction";
-			break;
-		case 2:
-			sortie = "Construction terminée";
-			break;
-		default:
-			sortie = "Statut incorrecte";
-			break;
-		}
-
-		return sortie;
-	}
 }
