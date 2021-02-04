@@ -29,7 +29,14 @@ public class MenuDirecteur extends Menu {
 				System.out.println("");
 				System.out.println("Entrez le nombre de votre option : ");
 
-				int choix = scan.nextInt();
+				int choix;
+				
+				try {
+					choix = scan.nextInt();
+				} catch (Exception e) {
+					System.out.println("Erreur : Vous n'avez pas inséré un nombre !");
+					choix = 4;
+				}
 
 				System.out.println("");
 

@@ -35,7 +35,14 @@ public class MenuConnexion extends Menu {
 					System.out.println("2. Quitter");
 					System.out.println("");
 
-					int choix = scan.nextInt();
+					int choix;
+					
+					try {
+						choix = scan.nextInt();
+					} catch (Exception e) {
+						System.out.println("Erreur : Vous n'avez pas inséré un nombre !");
+						choix = 4;
+					}
 
 					switch (choix) {
 					case 1:
@@ -57,19 +64,10 @@ public class MenuConnexion extends Menu {
 					if (isAgent) {
 						Agent agA;
 						agA = ag.recupererInfos(email);
-						// int agentId = agA.getAgentId();
-						// int deptAgent = agA.getDeptAgent();
-						// String prenom = agA.getPrenom();
-						// String nom = agA.getNom();
-						// String numTel = agA.getNumTel();
-						// String agence = agA.getAgence();
-						// String email = agA.getEmail();
-
-						// System.out.println("2:
-						// ["+agA.getAgentId()+","+agA.getDeptAgent()+","+agA.getPrenom()+","+agA.getNom()+","+agA.getNumTel()+","+agA.getAgence()+","+agA.getEmail()+"]");
-
+					
 						MenuAgent menuAgent = new MenuAgent();
 						menuAgent.show(agA);
+						
 						return true;
 					}
 
@@ -78,11 +76,10 @@ public class MenuConnexion extends Menu {
 					if (isDirecteur) {
 						Directeur dirA;
 						dirA = dir.recupererInfos(email);
-						// System.out.println("2:
-						// ["+directeurId+","+prenom+","+nom+","+numTel+","+agence+","+email+"]");
 
 						MenuDirecteur menuDirecteur = new MenuDirecteur();
 						menuDirecteur.show(dirA);
+						
 						return true;
 					}
 				}

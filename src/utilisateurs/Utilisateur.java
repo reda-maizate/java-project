@@ -3,8 +3,6 @@ package utilisateurs;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 
 public class Utilisateur {
 
@@ -94,81 +92,18 @@ public class Utilisateur {
 		
 		return lireFichierComparer("identifiants.txt", identifiantB, 0);
 	}
-	/*
-	public boolean estDejaEnregistreConnexion(String email) throws IOException {
-		String identifiantB = email;
-		FileReader lecteurFichier = new FileReader("identifiants.txt");
-		BufferedReader lecteur = new BufferedReader(lecteurFichier);
-
-		try {
-			String ligne;
-			while ((ligne = lecteur.readLine()) != null) {
-				String[] mots = ligne.split(",");
-				String identifiantsA = mots[0];
-				if (identifiantsA.equals(identifiantB)) {
-					return true;
-				}
-			}
-		} finally {
-			lecteur.close();
-		}
-	}
-		return false;*/
 
 	public boolean verificationConnexion(String identifiant, String motDePasse) throws IOException {
 		String identifiantB = identifiant + "," + motDePasse;
 		
 		return lireFichierComparer("identifiants.txt", identifiantB, -1);
 	}
-
-	/*
-	 * 	public boolean verificationConnexion(String identifiant, String motDePasse) throws IOException {
-		String identifiantsB = identifiant + "," + motDePasse;
-		FileReader lecteurFichier = new FileReader("identifiants.txt");
-		BufferedReader lecteur = new BufferedReader(lecteurFichier);
-
-		try {
-			String ligne;
-			while ((ligne = lecteur.readLine()) != null) {
-				String[] mots = ligne.split(",");
-				String identifiantsA = mots[0] + "," + mots[1];
-				if (identifiantsA.equals(identifiantsB)) {
-					return true;
-				}
-			}
-		} finally {
-			lecteur.close();
-		}
-		return false;
-	}
-	*/
 	
 	public boolean estDejaEnregistreAgent(String email) throws IOException {
 		String identifiantB = email;
 		
 		return lireFichierComparer("agents.txt", identifiantB, 6);
 	}
-	
-	/*
-	public boolean estDejaEnregistreAgent(String email) throws IOException {
-		String identifiantsB = email;
-		FileReader lecteurFichier = new FileReader("agents.txt");
-		BufferedReader lecteur = new BufferedReader(lecteurFichier);
-
-		try {
-			String ligne;
-			while ((ligne = lecteur.readLine()) != null) {
-				String[] mots = ligne.split(",");
-				String identifiantsA = mots[6];
-				if (identifiantsA.equals(identifiantsB)) {
-					return true;
-				}
-			}
-		} finally {
-			lecteur.close();
-		}
-		return false;
-	}*/
 
 	public void afficherListeMandat(int id) throws IOException {
 		String identifiantB = String.valueOf(id);

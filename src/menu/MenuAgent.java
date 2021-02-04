@@ -26,8 +26,15 @@ public class MenuAgent extends Menu {
 				System.out.println("3. Quitter");
 				System.out.println("");
 				System.out.println("Entrez le nombre correspondant à votre option : ");
-
-				int choix = scan.nextInt();
+				
+				int choix;
+				
+				try {
+					choix = scan.nextInt();
+				} catch (Exception e) {
+					System.out.println("Erreur : Vous n'avez pas inséré un nombre !");
+					choix = 4;
+				}
 
 				System.out.println("");
 

@@ -3,14 +3,9 @@ package utilisateurs;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -47,26 +42,6 @@ public class Agent extends Utilisateur {
 		
 		return lireFichierComparer("agents.txt", identifiantB, 6);
 	}
-	
-	/*	public boolean comparerAgents(String identifiant) throws IOException {
-		String identifiantsB = identifiant;
-		FileReader lecteurFichier = new FileReader("agents.txt");
-		BufferedReader lecteur = new BufferedReader(lecteurFichier);
-
-		try {
-			String ligne;
-			while ((ligne = lecteur.readLine()) != null) {
-				String[] mots = ligne.split(",");
-				String identifiantsA = mots[6];
-				if (identifiantsA.equals(identifiantsB)) {
-					return true;
-				}
-			}
-		} finally {
-			lecteur.close();
-		}
-		return false;
-	}*/
 
 	public Agent from(String[] s) {
 		String strAgentId = s[0].strip();
