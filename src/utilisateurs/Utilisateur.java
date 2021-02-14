@@ -63,8 +63,8 @@ public class Utilisateur {
 		this.agence = agence;
 	}
 	
-	public boolean lireFichierComparer(String nomFichier, String identifiantB, int elementComparateur) throws IOException {
-		FileReader lecteurFichier = new FileReader(nomFichier);
+	public boolean EmailEstIlPresentDansFichier(String nomFichierAVerifier, String email, int PositionElementAComparer) throws IOException {
+		FileReader lecteurFichier = new FileReader(nomFichierAVerifier);
 		BufferedReader lecteur = new BufferedReader(lecteurFichier);
 
 		try {
@@ -72,12 +72,12 @@ public class Utilisateur {
 			while ((ligne = lecteur.readLine()) != null) {
 				String[] mots = ligne.split(",");
 				String identifiantA;
- 				if (elementComparateur == -1) {
+ 				if (PositionElementAComparer == -1) {
 					identifiantA = ligne;
 				} else {
-					identifiantA = mots[elementComparateur];
+					identifiantA = mots[PositionElementAComparer];
 				}
-				if (identifiantA.equals(identifiantB)) {
+				if (identifiantA.equals(email)) {
 					return true;
 				}
 			}
@@ -90,19 +90,19 @@ public class Utilisateur {
 	public boolean estDejaEnregistreConnexion(String email) throws IOException {
 		String identifiantB = email;
 		
-		return lireFichierComparer("identifiants.txt", identifiantB, 0);
+		return EmailEstIlPresentDansFichier("identifiants.txt", identifiantB, 0);
 	}
 
 	public boolean verificationConnexion(String identifiant, String motDePasse) throws IOException {
 		String identifiantB = identifiant + "," + motDePasse;
 		
-		return lireFichierComparer("identifiants.txt", identifiantB, -1);
+		return EmailEstIlPresentDansFichier("identifiants.txt", identifiantB, -1);
 	}
 	
 	public boolean estDejaEnregistreAgent(String email) throws IOException {
 		String identifiantB = email;
 		
-		return lireFichierComparer("agents.txt", identifiantB, 6);
+		return EmailEstIlPresentDansFichier("agents.txt", identifiantB, 6);
 	}
 
 	public void afficherListeMandat(int id) throws IOException {

@@ -1,5 +1,6 @@
 package entites;
 
+@Deprecated
 public class Bien {
 	private int bienId;
 	private int mandatId;

@@ -31,7 +31,7 @@ public class Directeur extends Utilisateur {
 	public boolean comparerDirecteurs(String identifiant) throws IOException {
 		String identifiantB = identifiant;
 		
-		return lireFichierComparer("directeurs.txt", identifiantB, 5);
+		return EmailEstIlPresentDansFichier("directeurs.txt", identifiantB, 5);
 	}
 
 	public Directeur from(String[] s) {

@@ -1,5 +1,6 @@
 package entites;
 
+@Deprecated
 public class Adresse {
 	private int adresseId;
 	private int numVoieAdresse;

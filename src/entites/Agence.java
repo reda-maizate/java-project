@@ -1,5 +1,6 @@
 package entites;
 
+@Deprecated
 public class Agence {
 	private int agenceId;
 	private int directeurAgenceId;

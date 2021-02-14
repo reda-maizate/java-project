@@ -40,7 +40,7 @@ public class Agent extends Utilisateur {
 	public boolean comparerAgents(String identifiant) throws IOException {
 		String identifiantB = identifiant;
 		
-		return lireFichierComparer("agents.txt", identifiantB, 6);
+		return EmailEstIlPresentDansFichier("agents.txt", identifiantB, 6);
 	}
 
 	public Agent from(String[] s) {

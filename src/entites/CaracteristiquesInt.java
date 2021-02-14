@@ -1,5 +1,6 @@
 package entites;
 
+@Deprecated
 public class CaracteristiquesInt {
 	private int numChambre;
 	private int numSalleDeBain;

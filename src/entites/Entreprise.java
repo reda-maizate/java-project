@@ -1,5 +1,6 @@
 package entites;
 
+@Deprecated
 public class Entreprise {
 	private int entrepriseId;
 	private int siretEntreprise;
